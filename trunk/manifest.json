@@ -1,0 +1,15 @@
+{
+    "architecture": "all",
+    "description": "unofficial Outlook Office365 WebApp",
+    "framework": "ubuntu-sdk-15.04",
+    "hooks": {
+        "testapp": {
+            "apparmor": "app.json",
+            "desktop": "app.desktop"
+        }
+    },
+    "maintainer": "Stefan Kalb <stefan.kalb@gmx.ch>",
+    "name": "outlook-office365.ste-kal",
+    "title": "Outlook for Office365",
+    "version": "0.99"
+}
