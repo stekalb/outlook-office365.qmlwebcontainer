@@ -1,7 +1,7 @@
 {
     "architecture": "all",
     "description": "unofficial Outlook Office365 WebApp",
-    "framework": "ubuntu-sdk-16.04",
+    "framework": "ubuntu-sdk-15.04",
     "hooks": {
         "testapp": {
             "apparmor": "app.json",
