@@ -62,11 +62,6 @@ MainView {
             fadeIntensity: 0.0
         }
 
-        SoundEffect {
-            id: clicksound
-            source: "../sounds/Click.wav"
-        }
-
         WebContext {
             id: webcontext
             userAgent: myUA
