@@ -3,6 +3,7 @@
         "networking",
         "webview",
         "video",
+        "sound",
         "location",
         "content_exchange"
     ],
