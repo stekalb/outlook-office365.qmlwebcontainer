@@ -3,9 +3,7 @@ import QtQuick.Window 2.0
 import Ubuntu.Web 0.2
 import Ubuntu.Components 1.3
 import com.canonical.Oxide 1.19 as Oxide
-import "UCSComponents"
 import Ubuntu.Content 1.1
-import "actions" as Actions
 import QtMultimedia 5.0
 import QtFeedback 5.0
 import Ubuntu.Unity.Action 1.1 as UnityActions

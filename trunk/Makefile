@@ -28,7 +28,7 @@ TRANSLATION_ROOT=.
 MO_FILES=$(shell for infile in `find po -name "*.po"`; do basename -s .po $$infile | awk '{print "$(TRANSLATION_ROOT)/share/locale/" $$0 "/LC_MESSAGES/$(APP_ID).mo";}' ; done)
 QMLJS_FILES=$(shell find . -name "*.qml" -o -name "*.js" | grep -v ./tests)
 
-all: po/tagesanzeiger.pot
+#all: po/outlook-office365.pot
 
 autopilot:
 	chmod +x tests/autopilot/run

@@ -20,7 +20,7 @@
 #################################################################
 
 #APP_ID needs to match the "name" field of the click manifest
-APP_ID=tagesanzeiger.stefan-kalb
+APP_ID=outlook-office365
 
 #provides a way for the IDE to set a specific target folder for the translations
 TRANSLATION_ROOT=.
@@ -28,7 +28,7 @@ TRANSLATION_ROOT=.
 MO_FILES=$(shell for infile in `find po -name "*.po"`; do basename -s .po $$infile | awk '{print "$(TRANSLATION_ROOT)/share/locale/" $$0 "/LC_MESSAGES/$(APP_ID).mo";}' ; done)
 QMLJS_FILES=$(shell find . -name "*.qml" -o -name "*.js" | grep -v ./tests)
 
-all: po/tagesanzeiger.pot
+#all: po/outlook-office365.pot
 
 autopilot:
 	chmod +x tests/autopilot/run
@@ -46,4 +46,3 @@ po/tagesanzeiger.pot: $(QMLJS_FILES)
 
 $(TRANSLATION_ROOT)/share/locale/%/LC_MESSAGES/$(APP_ID).mo: po/%.po
 	mkdir -p $(TRANSLATION_ROOT)/share/locale/$*/LC_MESSAGES && msgfmt -o $(@) $(<)
-

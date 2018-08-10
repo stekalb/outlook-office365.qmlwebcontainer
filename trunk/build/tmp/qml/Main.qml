@@ -1,10 +1,9 @@
 import QtQuick 2.4
+import QtQuick.Window 2.0
 import Ubuntu.Web 0.2
 import Ubuntu.Components 1.3
 import com.canonical.Oxide 1.19 as Oxide
-import "UCSComponents"
 import Ubuntu.Content 1.1
-import "actions" as Actions
 import QtMultimedia 5.0
 import QtFeedback 5.0
 import Ubuntu.Unity.Action 1.1 as UnityActions
@@ -21,8 +20,19 @@ MainView {
 
     property string myUrl: Conf.webappUrl
     property string myPattern: Conf.webappUrlPattern
+    property string myUA: setUA();
 
-    property string myUA: Conf.webappUA ? Conf.webappUA : "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
+    function setUA(){
+      if(Screen.pixelDensity > 9){
+        var tmpUA = "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
+      }
+      else{
+        var tmpUA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/67.0.3396.99 Chrome/67.0.3396.99 Safari/537.36"
+      }
+      return tmpUA
+    }
+
+
 
     Page {
         id: page
@@ -48,11 +58,6 @@ MainView {
             duration: 10
             fadeTime: 50
             fadeIntensity: 0.0
-        }
-
-        SoundEffect {
-            id: clicksound
-            source: "../sounds/Click.wav"
         }
 
         WebContext {
@@ -86,6 +91,7 @@ MainView {
               filePicker: filePickerLoader.item
 
               function navigationRequestedDelegate(request) {
+
                   var url = request.url.toString();
                   var pattern = myPattern.split(',');
                   var isvalid = false;
@@ -118,6 +124,19 @@ MainView {
                       console.warn("got argument: " + Qt.application.arguments[1])
                       url = Qt.application.arguments[1]
                   }
+                  var x = Screen.width
+                  console.log("Screen width:"+x);
+
+                  var x = Screen.devicePixelRatio
+                  console.log("Screen PixelRatio:"+x);
+                  var x = Screen.name
+                  console.log("Screen Name:"+x);
+                  var x = Screen.pixelDensity
+                  console.log("Screen PixelDensity:"+x);
+
+                  console.log("UA:"+myUA);
+
+
                   console.warn("url is: " + url)
               }
               onGeolocationPermissionRequested: { request.accept() }
