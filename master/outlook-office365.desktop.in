@@ -1,10 +1,9 @@
 [Desktop Entry]
 Name=outlook-office365
-Type=Application
-Icon=icon.png
-Exec=qmlscene %u qml/Main.qml  --scaling --disable-gpu
-Type=Application
+Exec=qmlscene %u qml/main.qml --disable-gpu --scaling
+Icon=img/logo.svg
 Terminal=false
+Type=Application
 X-Ubuntu-Touch=true
 X-Ubuntu-Default-Department-ID=communication
 X-Ubuntu-Splash-Image=img/splash.svg

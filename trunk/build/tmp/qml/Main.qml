@@ -1,17 +1,21 @@
 import QtQuick 2.4
-import QtQuick.Window 2.0
 import Ubuntu.Web 0.2
 import Ubuntu.Components 1.3
 import com.canonical.Oxide 1.19 as Oxide
 import Ubuntu.Content 1.1
 import QtMultimedia 5.0
 import QtFeedback 5.0
-import Ubuntu.Unity.Action 1.1 as UnityActions
+import QtQuick.Window 2.2
+
 import "."
 import "../config.js" as Conf
 
 MainView {
     objectName: "mainView"
+
+anchors {
+            fill: parent
+        }
 
     applicationName: "outlook-office365.ste-kal"
 
@@ -38,9 +42,10 @@ MainView {
         id: page
 
         header: Rectangle {
-          color: UbuntuColors.orange
+          color: "#000000"
           width: parent.width
-          height: units.gu(0)
+          height: units.dp(0)
+          z: 1
         }
 
         anchors {
@@ -63,90 +68,78 @@ MainView {
         WebContext {
             id: webcontext
             userAgent: myUA
+            userScripts: [
+              Oxide.UserScript {
+                context: "oxide://"
+                url: Qt.resolvedUrl("../userscripts/userscript.js")
+                matchAllFrames: true
+              }
+            ]
         }
-        Rectangle{
-          id: contentview
-          anchors{
-            top: parent.top
-          }
-          width: parent.width
-          height: parent.height - units.gu(0)
 
-          WebView {
-              id: webview
-              anchors {
-                  fill: parent
-                  bottom: parent.bottom
+        context: webcontext
+        url: myUrl
+
+        preferences.localStorageEnabled: true
+        preferences.allowFileAccessFromFileUrls: true
+        preferences.allowUniversalAccessFromFileUrls: true
+        preferences.appCacheEnabled: true
+        preferences.javascriptCanAccessClipboard: true
+        filePicker: filePickerLoader.item
+
+        function navigationRequestedDelegate(request) {
+              var url = request.url.toString();
+
+              if (Conf.hapticLinks) {
+                  vibration.start()
               }
-              width: parent.width
-              height: parent.height
 
-              context: webcontext
-              url: myUrl
-              preferences.localStorageEnabled: true
-              preferences.allowFileAccessFromFileUrls: true
-              preferences.allowUniversalAccessFromFileUrls: true
-              preferences.appCacheEnabled: true
-              preferences.javascriptCanAccessClipboard: true
-              filePicker: filePickerLoader.item
-
-              function navigationRequestedDelegate(request) {
-
-                  var url = request.url.toString();
-                  var pattern = myPattern.split(',');
-                  var isvalid = false;
-
-                  if (Conf.hapticLinks) {
-                      vibration.start()
-                  }
-
-                  if (Conf.audibleLinks) {
-                      clicksound.play()
-                  }
-
-                  for (var i=0; i<pattern.length; i++) {
-                      var tmpsearch = pattern[i].replace(/\*/g,'(.*)')
-                      var search = tmpsearch.replace(/^https\?:\/\//g, '(http|https):\/\/');
-                      if (url.match(search)) {
-                         isvalid = true;
-                         break
-                      }
-                  }
-                  if(isvalid == false) {
-                      console.warn("Opening remote: " + url);
-                      Qt.openUrlExternally(url)
-                      request.action = Oxide.NavigationRequest.ActionReject
-                  }
+              if (Conf.audibleLinks) {
+                  clicksound.play()
               }
-              Component.onCompleted: {
-                  preferences.localStorageEnabled = true
-                  if (Qt.application.arguments[1].toString().indexOf(myUrl) > -1) {
-                      console.warn("got argument: " + Qt.application.arguments[1])
-                      url = Qt.application.arguments[1]
-                  }
-                  var x = Screen.width
-                  console.log("Screen width:"+x);
 
-                  var x = Screen.devicePixelRatio
-                  console.log("Screen PixelRatio:"+x);
-                  var x = Screen.name
-                  console.log("Screen Name:"+x);
-                  var x = Screen.pixelDensity
-                  console.log("Screen PixelDensity:"+x);
-
-                  console.log("UA:"+myUA);
-
-
-                  console.warn("url is: " + url)
-              }
-              onGeolocationPermissionRequested: { request.accept() }
-              Loader {
-                  id: filePickerLoader
-                  source: "ContentPickerDialog.qml"
-                  asynchronous: true
+              if(isValid(url) == false) {
+                  console.warn("Opening remote: " + url);
+                  Qt.openUrlExternally(url)
+                  request.action = Oxide.NavigationRequest.ActionReject
               }
           }
-        }
+
+          Component.onCompleted: {
+                preferences.localStorageEnabled = true
+                if (Qt.application.arguments[2] != undefined ) {
+                    console.warn("got argument: " + Qt.application.arguments[1])
+                    if(isValid(Qt.application.arguments[1]) == true) {
+                        url = Qt.application.arguments[1]
+                    }
+                }
+                console.warn("url is: " + url)
+            }
+//        onGeolocationPermissionRequested: { request.accept() }
+
+           Loader {
+                id: downloadLoader
+                source: "Downloader.qml"
+                asynchronous: true
+            }
+
+            Loader {
+                id: filePickerLoader
+                source: "ContentPickerDialog.qml"
+                asynchronous: true
+            }
+            function isValid (url){
+                var pattern = myPattern.split(',');
+                for (var i=0; i<pattern.length; i++) {
+                    var tmpsearch = pattern[i].replace(/\*/g,'(.*)')
+                    var search = tmpsearch.replace(/^https\?:\/\//g, '(http|https):\/\/');
+                    if (url.match(search)) {
+                       return true;
+                    }
+                }
+                return false;
+            }
+
         ThinProgressBar {
             webview: webview
             anchors {

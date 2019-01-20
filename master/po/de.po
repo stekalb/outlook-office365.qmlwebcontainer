@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Stefan Kalb
+# This file is distributed under the same license as the outlook-office365 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: outlook-office365\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-21 06:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/actions/CopyImage.qml:22
+msgid "Copy image"
+msgstr "Bild kopieren"
+
+#: ../qml/actions/Copy.qml:22
+msgid "Copy"
+msgstr "Kopieren"
+
+#: ../qml/actions/SaveImage.qml:22
+msgid "Save image"
+msgstr "Bild speichern"
+
+#: ../qml/actions/CopyLink.qml:22
+msgid "Copy link"
+msgstr "Link kopieren"
+
+#: ../qml/actions/ShareLink.qml:22
+msgid "Share…"
+msgstr "Teilen"
+
+#: ../qml/Main.qml:96
+msgid "Copy Link"
+msgstr "Link kopieren"
+
+#: ../qml/Main.qml:104
+msgid "Share Link"
+msgstr "Link teilen"
+
+#: ../qml/Main.qml:120
+msgid "Copy Image"
+msgstr "Bild kopieren"
+
+#: ../qml/Main.qml:126
+msgid "Download Image"
+msgstr "Bild herunterladen"
+
+#: ../qml/QrCodeDialog.qml:11
+msgid "Close"
+msgstr "Schliessen"

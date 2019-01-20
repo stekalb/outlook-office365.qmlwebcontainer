@@ -1,0 +1,15 @@
+{
+    "name": "outlook-office365.ste-kal",
+    "description": "unofficial Outlook Office365 WebApp for Ubuntu Touch OS",
+    "architecture": "armhf",
+    "title": "Outlook for Office365",
+    "hooks": {
+        "twitter-web": {
+            "apparmor": "outlook-office365.apparmor",
+            "desktop": "outlook-office365.desktop"
+        }
+    },
+    "version": "1.9.7",
+    "maintainer": "Stefan Kalb <stefan.kalb@gmx.ch>",
+    "framework" : "ubuntu-sdk-16.04"
+}
