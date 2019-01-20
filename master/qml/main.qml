@@ -40,7 +40,7 @@ MainView {
 
   
     header: Rectangle {
-      color: "#000000"
+      color: "#005ac8ff"
       width: parent.width
       height: units.dp(.5)
       z: 1
