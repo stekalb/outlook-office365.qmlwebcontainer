@@ -10,7 +10,7 @@ Rectangle {
   z: 100000
   width: parent.width
   height: units.gu(4)
-  color: "#005ac8ff"
+  color: "#005ac8"
 
   anchors {
     bottom: parent.bottom
