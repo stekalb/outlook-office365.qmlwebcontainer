@@ -40,7 +40,7 @@ MainView {
 
   
     header: Rectangle {
-      color: "#005ac8"
+      color: "#0078D7"
       width: parent.width
       height: units.dp(.5)
       z: 1
@@ -58,9 +58,7 @@ MainView {
 
       settings.fullScreenSupportEnabled: false
       settings.pluginsEnabled: true
-      property string myTabletUrl: "https://outlook.office365.com/owa"
-      property string myMobileUrl: "https://outlook.office365.com/owa"
-      property string myUrl: (Screen.pixelDensity == 8.88888888888889) ? myTabletUrl : myMobileUrl
+      property string myUrl: "https://outlook.office365.com/owa"
 
       property string test: writeToLog("DEBUG","my URL:", myUrl);
       property string test2: writeToLog("DEBUG","DevicePixelRatio:", Screen.devicePixelRatio);

@@ -1,5 +1,5 @@
 import QtQuick 2.9
-import Ubuntu.Web 0.2
+import Morph.Web 0.1
 import Ubuntu.Components 1.3
 import QtQuick.LocalStorage 2.0
 import Ubuntu.Components.Popups 1.3
@@ -10,7 +10,7 @@ Rectangle {
   z: 100000
   width: parent.width
   height: units.gu(4)
-  color: "#005ac8"
+  color: "#0078D7"
 
   anchors {
     bottom: parent.bottom

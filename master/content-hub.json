@@ -4,5 +4,11 @@
         "links",
         "documents",
         "contacts"
+    ],
+    "target": [
+        "pictures",
+        "links",
+        "documents",
+        "contacts"
     ]
 }
