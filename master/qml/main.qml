@@ -4,7 +4,6 @@ import Morph.Web 0.1
 import QtWebEngine 1.7
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
-import Ubuntu.UnityWebApps 0.1 as UnityWebApps
 import Ubuntu.Content 1.1
 import QtMultimedia 5.8
 import QtSystemInfo 5.0
