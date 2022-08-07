@@ -72,9 +72,12 @@ MainView {
 
       profile: WebEngineProfile {
         id: webContext
+
+        storageName: "myProfile"
+        offTheRecord: false
         persistentCookiesPolicy: WebEngineProfile.ForcePersistentCookies
-        property alias userAgent: webContext.httpUserAgent
         property alias dataPath: webContext.persistentStoragePath
+
         property string myTabletUA: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
         property string myMobileUA: "Mozilla/5.0 (Windows Phone 10.0; Android 6.0.1; Microsoft; RM-1152) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Mobile Safari/537.36 Edge/15.15254"
         property string myUA: (Screen.devicePixelRatio == 1.625 && Screen.pixelDensity == 5.469444444444444) ? myTabletUA : myMobileUA
