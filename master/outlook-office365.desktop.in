@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=outlook-office365
-Exec=qmlscene %u qml/main.qml --disable-gpu --scaling
+Exec=qmlscene %u qml/main.qml --scaling
 Icon=img/logo.svg
 Terminal=false
 Type=Application
